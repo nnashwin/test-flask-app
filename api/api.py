@@ -15,7 +15,7 @@ def index():
 
 @app.route('/time',methods = ['POST', 'GET'])
 def get_current_time():
-    conn = sqlite3.connect('files.db')
+    conn = sqlite3.connect(DB_PATH)
     if request.method == 'POST':
         c = conn.cursor()
         val = 'cookies' + time.asctime()
