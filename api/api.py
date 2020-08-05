@@ -13,17 +13,16 @@ DB_PATH='./files.db'
 def index():
     return app.send_static_file('index.html')
 
-@app.route('/time',methods = ['POST', 'GET'])
-def get_current_time():
+@app.route('/files',methods = ['POST', 'GET'])
+def handle_files_json():
     conn = sqlite3.connect(DB_PATH)
     if request.method == 'POST':
         c = conn.cursor()
-        val = 'cookies' + time.asctime()
-        c.execute("insert or replace into files(id, data) values (?, ?)",
-                ['100', json.dumps({'time': val})])
+        c.execute('INSERT OR REPLACE INTO files(id, data) values (?, ?)',
+            ['1', toJson(strList)])
         conn.commit()
         conn.close()
-        return {'time': val}
+        return {'files': val}
     else:
         conn.row_factory = sqlite3.Row
         c = conn.cursor()
