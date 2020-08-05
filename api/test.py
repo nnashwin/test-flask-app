@@ -9,8 +9,8 @@ class TestParseNames(unittest.TestCase):
         #
         # Test that it converts a list of strings to json of the correct format
         #
-        strList = ['cool_apple', 'thatApple', 'cool_orange', 'thatOrange', 'cool_banana', 'cool_kiwi', 'thatKiwi', 'alaska']
-        expected = json.dumps({'data': {'cool_': ['cool_apple', 'cool_orange', 'cool_banana', 'cool_kiwi'], 'that': ['thatApple', 'thatOrange', 'thatKiwi'], 'alaska': ['alaska']}})
+        strList = ['cool', 'cool_apple', 'thatApple', 'cool_orange', 'thatOrange', 'cool_banana', 'cool_kiwi', 'thatKiwi', 'alaska']
+        expected = json.dumps({'data': {'cool': ['cool', 'cool_apple', 'cool_orange', 'cool_banana', 'cool_kiwi'], 'that': ['thatApple', 'thatOrange', 'thatKiwi'], 'alaska': ['alaska']}})
         self.assertEqual(toJson(strList), expected)
 
 class TestBasicTrie(unittest.TestCase):

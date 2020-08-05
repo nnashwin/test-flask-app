@@ -5,10 +5,7 @@ class TrieNode(object):
     def __init__(self, char: str):
         self.char= char
         self.children = []
-
         self.word_finished = False
-
-        self.counter = 1
 
 def add(root, word: str):
     """
@@ -42,6 +39,11 @@ def longest_prefix(root, word: str) -> str:
 
     for char in word:
         child_count = len(node.children)
+        # if the character in a trie is a finished word, regardless of how many children it has
+        # it should be the prefix because anything after it will be moot.
+        if node.word_finished:
+            return prefix
+
         # ignore the first character of a trie
         if child_count > 1 and node.char != '*':
             return prefix
