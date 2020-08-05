@@ -7,10 +7,10 @@ import basictrie as trie
 class TestParseNames(unittest.TestCase):
     def test_toJson(self):
         #
-        # Test that it converts a list of strings to json
+        # Test that it converts a list of strings to json of the correct format
         #
         strList = ['cool_apple', 'thatApple', 'cool_orange', 'thatOrange', 'cool_banana', 'cool_kiwi', 'thatKiwi', 'alaska']
-        expected = json.dumps({'cool_': ['cool_apple', 'cool_orange', 'cool_banana', 'cool_kiwi'], 'that': ['thatApple', 'thatOrange', 'thatKiwi'], 'alaska': ['alaska']})
+        expected = json.dumps({'data': {'cool_': ['cool_apple', 'cool_orange', 'cool_banana', 'cool_kiwi'], 'that': ['thatApple', 'thatOrange', 'thatKiwi'], 'alaska': ['alaska']}})
         self.assertEqual(toJson(strList), expected)
 
 class TestBasicTrie(unittest.TestCase):
