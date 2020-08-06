@@ -28,3 +28,11 @@ $ yarn install
 
 You should see the required packages downloaded.
 
+## Run
+If you have already activated your virtual env (source venv/bin/activate), you can build the client-side application and run the flask server by using the npm script 'start'.
+
+```bash
+$ yarn start
+```
+
+If everything has been completed up until this point, you should be able to hit a running flask server with the application in your browser [here](http://localhost:5000/).
