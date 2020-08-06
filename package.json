@@ -13,8 +13,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "run": "react-scripts build && FLASK_ENV=development FLASK_APP=./api/api.py flask run",
     "test": "react-scripts test",
-    "test:api": "python api/test.py",
+    "test:api": "python3 api/test.py",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
