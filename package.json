@@ -11,9 +11,9 @@
     "react-scripts": "3.4.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "dev": "react-scripts start",
     "build": "react-scripts build",
-    "run": "react-scripts build && FLASK_ENV=development FLASK_APP=./api/api.py flask run",
+    "start": "react-scripts build && FLASK_ENV=development FLASK_APP=./api/api.py flask run",
     "test": "react-scripts test",
     "test:api": "python3 api/test.py",
     "eject": "react-scripts eject"
