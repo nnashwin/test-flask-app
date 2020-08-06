@@ -1,4 +1,5 @@
 import json
+import os
 import time
 from flask import Flask, request
 
@@ -6,8 +7,10 @@ import sqlite3
 
 app = Flask(__name__, static_folder='../build', static_url_path='/')
 
-DB_PATH='./files.db'
+FLASK_DIR=os.path.dirname(os.environ['FLASK_APP'])
+DB_PATH=f"{FLASK_DIR}/files.db"
 
+print(FLASK_DIR)
 # Static path for application
 @app.route('/')
 def index():
