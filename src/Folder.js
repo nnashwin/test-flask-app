@@ -10,7 +10,9 @@ export const Folder = ({clickedFile, folder, handleElementClick, name}) => {
                         const isEmptyObj = Object.keys(clickedFile).length === 0;
                         const isClicked = !isEmptyObj && clickedFile.hasClicked && clickedFile.fileIdx === fileIdx ? true : false;
 
-                        return (<File folderName={name} 
+                        return (<File
+                            key={fileIdx}
+                            folderName={name}
                             handleElementClick={handleElementClick}
                             isClicked={isClicked}
                             index={fileIdx}

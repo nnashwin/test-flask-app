@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 export const File = ({folderName, text, handleElementClick, index, isClicked}) => {
     const highlightStyle = {

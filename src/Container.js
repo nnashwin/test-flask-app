@@ -4,14 +4,18 @@ import { useForm } from 'react-hook-form';
 import { Folder } from './Folder';
 
 export const Container = () => {
-    const [data, setData] = useState({});
-    const [error, setError] = useState(false);
-
-    const [clickedFile, setClickedFile] = useState({hasClicked: false, folderName: '', fileIdx: 0});
-    const [loaded, setLoaded] = useState(false);
+    // instantiate hook for the react-hook-form
     const { errors, handleSubmit, register, reset } = useForm();
 
+    const [data, setData] = useState({});
+    const [error, setError] = useState(false);
+    const [dataLoaded, setDataLoaded] = useState(false);
+
+    const [clickedFile, setClickedFile] = useState({hasClicked: false, folderName: '', fileIdx: 0});
+
     // handles click events on folders (h3 element) and files (li element)
+    // wraps the function in a closure in order to save the parameters where they are defined
+    // and handle both contexts used
     const handleElementClick = (folderName, fileIdx, elType) => () => {
         // adds the check to length > 0 to make sure that if create a new folder, it will not select an undefined element
         if (!clickedFile.hasClicked && data[folderName].length > 0) {
@@ -71,13 +75,13 @@ export const Container = () => {
     // add effect to load in data before the app starts.
     // also sets an error if the loading wasn't able to be complete
     useEffect(() => {
-        setLoaded(false);
+        setDataLoaded(false);
         async function fetchData(url) {
             try {
                 const response = await fetch(url);
                 const json = await response.json()
 
-                setLoaded(true);
+                setDataLoaded(true);
                 setData(json.data);
             } catch (e) {
                 setError(true);
@@ -95,7 +99,7 @@ export const Container = () => {
             }
 
             {
-                !loaded ? <p>Loading...</p> : 
+                !dataLoaded ? <p>Loading...</p> : 
                     <>
                         <section style={{textAlign: 'left'}}>
                             <h3>Add a new folder!</h3>
