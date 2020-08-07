@@ -1,5 +1,5 @@
 # Test Flask React App
-> Interactive folder metadata for a more enabled future
+> Interactive folder metadata for an organized future
 
 ## Install
 
@@ -7,7 +7,7 @@
 Ensure that you have pip3 and python3 installed on your system. 
 After you have that, go to the api directory and run the following:
 ```bash
-$ py3 -m venv venv && source venv/bin/activate && pip3 -r requirements.txt
+$ python3 -m venv venv && source venv/bin/activate && pip3 install -r requirements.txt
 ```
 
 If everything worked out, you should see the required dependencies downloading successfully in the terminal.
@@ -20,7 +20,7 @@ To install the client packages, we recommend you install a valid version of Java
 $ npm i -g yarn
 ```
 
-Afterwards, run the yarn install command in the root directory to install all required client side packages.
+Afterwards, run the yarn install command from the root directory of the project to install all required client side packages.
 
 ```bash
 $ yarn install
@@ -29,17 +29,17 @@ $ yarn install
 You should see the required packages downloading in the terminal.
 
 ## Run
-If you have already activated your virtual env (source venv/bin/activate), you can build the client-side application and run the flask server by using the npm script 'start'.
+If you have already activated your virtual env (source venv/bin/activate), you can build the client-side application and run the flask server by using the npm script 'start' from the root directory.
 
 ```bash
 $ yarn start
 ```
 
-If everything has been completed up until this point, you should be able to hit a running flask server with the application in your browser [here](http://localhost:5000/).
+If every step has been completed up until this point, you should be able to hit a running flask server with the application in your browser [here](http://localhost:5000/).
 
 ## Design
 
-***### Server Side
+### Server Side
 For this application, I wanted a simple data store that can be updated easily yet scaled out in the future.  Have worked with some sql previously, I felt that a really simple sqlite db file
 could hold the data created through the create_db script.  The cool thing about using sqlite is that we can build on the simple structure while maintaining sql syntax / table definitions. 
 As we incrementally add to the application, once the data needs grow past a certain point, we can change the connection in our creation script to query an actual sql database in the future.
@@ -56,8 +56,12 @@ and readability of code.
 
    - If we created a files table that had a many-to-one relationship with a record in a users table, we could allow each version to be saved into a database while incrementing the number. By adding a current version field in the users table, we could save, roll back, and even allow users to explore other previous versions of the folders and files they have created before.
 
-2. Adding Drag and Drop.
+2. Add Drag and Drop.
    - This seems like a great project to use drag and drop.  I started down that path for a bit, but I think that it would be too much of a lift for the current scope of the project.  It would be nice to allow users to interact with the app in a more dynamic way.
 
-3. Finding a standard, solid python trie library to use in the creation script.
+3. Find a standard, solid python trie library to use in the database creation script.
     - Once I realized this problem was well solved with a trie, I did a quick search of the top python trie libraries out there with the correct apis I needed.  I didn't find ones with simple enough apis that met the needs of the project, and I felt I could write a small one up faster than it would take with the 3-5 hour deadline.  However, I am sure there is a solid open-source library out there that works out of the box.
+
+4. Update headers in the server-side code.  Especially CORS
+    - Right now, CORS headers are set to '*' on the Flask server to enable development from localhost:3000 with react-hot-loading when you load the dev server (yarn dev).  When we actually deploy, we want only our web page to be able to hit the server.  A way to do this is sending back the actual url in the Access-Control-Allow-Origin header.
+    -  A lot of the development of the serverside code was simply to "make it work" and test out the POC.  In order to make a full application, we should review which headers are necessary and write a method that converts the object and adds all appropriate headers.
