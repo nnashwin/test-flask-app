@@ -8,7 +8,6 @@ strList = []
 with open('data/names.csv') as dataFile:
     spamreader = csv.reader(dataFile, delimiter=' ', quotechar='|')
     for row in spamreader:
-        print(row)
         strList += row
 
 

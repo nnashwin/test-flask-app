@@ -1,6 +1,10 @@
 import basictrie as trie 
 import json
 
+'''
+ Module that takes a list of strings, reads them into a simple trie, and creates a json object with keys and values based on the
+ longest common prefix found inside of the trie
+'''
 def toJson(strList):
     root = trie.TrieNode('*')
 
