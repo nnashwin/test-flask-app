@@ -1,3 +1,7 @@
+'''
+ This modules was written to use a basic implementation of a trie in order to add values and find the most descriptive prefix possible in a simple way. 
+
+'''
 class TrieNode(object):
     """
     Basic Trie node implementation. Focused around inserting and checking prefixes only.
