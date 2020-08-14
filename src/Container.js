@@ -57,19 +57,21 @@ export const Container = () => {
 
     }
 
-    const onSubmit = (data, e) => {
+    const onSubmit = (formData, e) => {
         e.target.reset();
         reset();
-        // uses the prevData to sort the previous data before operating on the new state
-        setData(prevData => { 
-            const unordered = {...prevData, [data.folderName]: []};
-            const ordered = {}
-            Object.keys(unordered).sort().forEach(key => {
-                ordered[key] = unordered[key];
-            });
+        if (!data[formData.folderName]) {
+            // uses the prevData to sort the previous data before operating on the new state
+            setData(prevData => { 
+                const unordered = {...prevData, [formData.folderName]: []};
+                const ordered = {}
+                Object.keys(unordered).sort().forEach(key => {
+                    ordered[key] = unordered[key];
+                });
 
-            return ordered;
-        });
+                return ordered;
+            });
+        }
     }
 
     // add effect to load in data before the app starts.
